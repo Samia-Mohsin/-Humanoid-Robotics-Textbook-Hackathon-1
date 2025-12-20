@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json \"Module 1: The Robotic Nervous System (ROS 2)\n\nTarget audience:\n-AI students and developers entering humanoid robotics\n\nFocus:\n-ROS 2 as the middleware nervous system for humanoid robots\n-Core communication concepts and humanoid description.\n\nChapters (Docusaurus):\n1. Introduction to ROS 2 for Physical AI\n    -What ROS 2 is, why it matters for humanoids, DDS concepts\n2. ROS 2 Communication Model\n    -Nodes, Topics, Services, basic rclpy-based agent + controller flow\n3. Robot Structure with URDF\n    -Understanding URDF for humanoid robots and simulation readiness\" -Number 1 -ShortName \"ros2-nervous-system\")",
-      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/setup-plan.ps1\" -Json)"
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/setup-plan.ps1\" -Json)",
+      "Bash(dir \"C:\\\\Users\\\\samia\\\\Documents\\\\GitHub\\\\-Humanoid-Robotics-Textbook-Hackathon-1\\\\frontend-book\\\\docs\\\\advanced-digital-twin\" /s)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/update-agent-context.ps1\" -AgentType claude)",
+      "Bash(git fetch --all --prune)",
+      "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json \"/sp.specify Module 4: Vision–Language–Action \\(VLA\\)\n\n## Target Audience\nAI and robotics students\n\n## Focus\nIntegrating vision, language, and action for autonomous humanoids\n\n## Chapters \\(Docusaurus\\)\n\n### 1. VLA System Overview\n- Vision–Language–Action architecture  \n- Role in humanoid autonomy\n\n### 2. Language to Intent\n- Voice-to-text \\(conceptual\\)  \n- LLM-based task understanding and planning\n\n### 3. Planning to Action\n- Translating intent into ROS 2 actions  \n- Capstone autonomous humanoid flow\n\n## Success Criteria\n- Reader understands VLA architecture  \n- Reader can explain language-to-action flow\n\n## Constraints\n- Docusaurus Markdown  \n- Diagrams + minimal conceptual code  \n- Fundamentals only\n\n## Not Building\n- Full voice or LLM pipelines  \n- Production planners  \n- Hardware integration\" -Number 1 -ShortName \"vla-integration\")"
     ]
   }
 }
