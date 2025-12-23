@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: 'The Robotic Nervous System (ROS 2)',
+      label: 'Module 1: The Robotic Nervous System (ROS 2)',
       items: [
         {
           type: 'category',
@@ -51,7 +51,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Advanced Digital Twin (Gazebo & Unity)',
+      label: 'Module 2: Advanced Digital Twin Integration (Gazebo & Unity)',
       items: [
         'advanced-digital-twin/index',
         {
@@ -96,7 +96,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'The AI-Robot Brain (NVIDIA Isaac™)',
+      label: 'Module 3: The AI-Robot Brain (NVIDIA Isaac™)',
       items: [
         'isaac-ai-brain/index',
         {
@@ -130,7 +130,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Vision-Language-Action (VLA)',
+      label: 'Module 4: Vision-Language-Action (VLA)',
       items: [
         'vla-integration/index',
         {
@@ -160,6 +160,13 @@ const sidebars: SidebarsConfig = {
             'vla-integration/planning-to-action/humanoid-flow',
           ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Module 5: Capstone Project',
+      items: [
+        'capstone-project/index',
       ],
     },
   ],

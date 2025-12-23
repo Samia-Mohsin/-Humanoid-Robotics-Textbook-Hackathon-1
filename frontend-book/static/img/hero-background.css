@@ -1,0 +1,10 @@
+/* Cyberpunk circuit board background pattern as CSS */
+:root {
+  --circuit-background:
+    radial-gradient(circle at 20% 30%, #ff00ff 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, #00ffff 1px, transparent 1px),
+    linear-gradient(90deg, transparent 49%, rgba(255, 0, 255, 0.1) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(0, 255, 255, 0.1) 50%, transparent 51%);
+  --circuit-background-size: 100px 100px, 120px 120px, 50px 50px, 50px 50px;
+  --circuit-background-position: 0 0, 50px 50px, 0 0, 0 0;
+}

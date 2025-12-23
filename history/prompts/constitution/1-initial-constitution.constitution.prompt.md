@@ -61,8 +61,6 @@ Constraints:
 
 * No hallucinated responses
 
-* End-to-end    reproducibility    
-
 
                                                                                                            
  Success criteria:

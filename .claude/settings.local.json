@@ -8,7 +8,32 @@
       "Bash(git fetch --all --prune)",
       "Bash(.specify/scripts/powershell/create-new-feature.ps1 -Json \"/sp.specify Module 4: Vision–Language–Action \\(VLA\\)\n\n## Target Audience\nAI and robotics students\n\n## Focus\nIntegrating vision, language, and action for autonomous humanoids\n\n## Chapters \\(Docusaurus\\)\n\n### 1. VLA System Overview\n- Vision–Language–Action architecture  \n- Role in humanoid autonomy\n\n### 2. Language to Intent\n- Voice-to-text \\(conceptual\\)  \n- LLM-based task understanding and planning\n\n### 3. Planning to Action\n- Translating intent into ROS 2 actions  \n- Capstone autonomous humanoid flow\n\n## Success Criteria\n- Reader understands VLA architecture  \n- Reader can explain language-to-action flow\n\n## Constraints\n- Docusaurus Markdown  \n- Diagrams + minimal conceptual code  \n- Fundamentals only\n\n## Not Building\n- Full voice or LLM pipelines  \n- Production planners  \n- Hardware integration\" -Number 1 -ShortName \"vla-integration\")",
       "Bash(npm start)",
-      "Bash(npx docusaurus start)"
+      "Bash(npx docusaurus start)",
+      "Bash(node node_modules/@docusaurus/core/bin/docusaurus.js start)",
+      "Bash(pkill -f \"docusaurus\")",
+      "Bash(pkill -f \"node\")",
+      "Bash(npx docusaurus start --port 3001)",
+      "Bash(npx docusaurus start --port 3002)",
+      "Bash(npx docusaurus start --port 3003)",
+      "Bash(npx docusaurus start --port 3004)",
+      "Bash(npx docusaurus start --port 3005)",
+      "Bash(curl -I http://localhost:3005/-Humanoid-Robotics-Textbook-Hackathon-1/)",
+      "Bash(curl -I \"http://localhost:3005/-Humanoid-Robotics-Textbook-Hackathon-1/docs/vla-integration\")",
+      "Bash(curl -I \"http://localhost:3005/-Humanoid-Robotics-Textbook-Hackathon-1/docs/advanced-digital-twin\")",
+      "Bash(curl -I \"http://localhost:3005/-Humanoid-Robotics-Textbook-Hackathon-1/docs/vla-integration/vla-system-overview/vla-architecture\")",
+      "Bash(curl -I \"http://localhost:3005/-Humanoid-Robotics-Textbook-Hackathon-1/docs/advanced-digital-twin/multi-platform-synchronization/index\")",
+      "Bash(curl -I \"http://localhost:3005/-Humanoid-Robotics-Textbook-Hackathon-1/docs/advanced-digital-twin/multi-platform-synchronization/performance-optimization\")",
+      "Bash(npm start -- --poll 500)",
+      "Bash(npm run start -- --port 3005)",
+      "Bash(npx docusaurus start --port 3006)",
+      "Bash(curl -I \"http://localhost:4000/-Humanoid-Robotics-Textbook-Hackathon-1/docs/vla-integration/language-to-intent/llm-processing\")",
+      "Bash(curl -I \"http://localhost:4000/-Humanoid-Robotics-Textbook-Hackathon-1/docs/advanced-digital-twin/multi-platform-synchronization/index\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -RequireTasks -IncludeTasks)",
+      "Bash(dir \"C:\\\\Users\\\\samia\\\\Documents\\\\GitHub\\\\-Humanoid-Robotics-Textbook-Hackathon-1\\\\history\\\\prompts\\\\docusaurus-blank-page\" /s)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(git checkout 001-docusaurus-blank-page)",
+      "Bash(npm install)"
     ]
   }
 }

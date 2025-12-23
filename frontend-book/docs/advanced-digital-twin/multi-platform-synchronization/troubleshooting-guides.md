@@ -4,7 +4,7 @@ sidebar_position: 17
 
 # Troubleshooting Guides for Synchronization Issues
 
-This chapter provides systematic approaches to diagnose and resolve common synchronization problems between Gazebo and Unity. These guides help maintain <50ms latency and ensure consistent behavior across platforms.
+This chapter provides systematic approaches to diagnose and resolve common synchronization problems between Gazebo and Unity. These guides help maintain &lt;50ms latency and ensure consistent behavior across platforms.
 
 ## Diagnostic Methodology
 

@@ -4,7 +4,7 @@ sidebar_position: 16
 
 # Synchronization Examples
 
-This page provides practical examples demonstrating synchronization implementations that achieve <50ms latency between Gazebo and Unity. These examples showcase real-world approaches to multi-platform synchronization.
+This page provides practical examples demonstrating synchronization implementations that achieve &lt;50ms latency between Gazebo and Unity. These examples showcase real-world approaches to multi-platform synchronization.
 
 ## Example 1: Basic Low-Latency Synchronization
 

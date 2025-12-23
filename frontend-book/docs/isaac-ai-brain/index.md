@@ -1,4 +1,4 @@
-# Module 3: The AI-Robot Brain (NVIDIA Isaac™)
+#  The AI-Robot Brain (NVIDIA Isaac™)
 
 Welcome to Module 3 of the Humanoid Robotics Textbook! This module covers the NVIDIA Isaac ecosystem for humanoid robotics, focusing on perception, navigation, and training concepts.
 

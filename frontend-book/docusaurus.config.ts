@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'The Robotic Nervous System (ROS 2)',
-  tagline: 'A comprehensive guide to ROS 2 for humanoid robotics',
+  title: 'Physical AI & Humanoid Robotics',
+  tagline: 'The Complete Textbook for the Future of Robotics',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -18,7 +18,7 @@ const config: Config = {
   url: 'https://samia.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/-Humanoid-Robotics-Textbook-Hackathon-1/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -70,14 +70,14 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/ros2-social-card.png',
+    image: 'img/textbook-social-card.png',
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'ROS 2 for Humanoid Robotics',
+      title: 'Physical AI & Humanoid Robotics',
       logo: {
-        alt: 'ROS 2 Logo',
+        alt: 'Physical AI & Humanoid Robotics Textbook Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,9 +85,8 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Module 1',
+          label: 'Textbook',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/samia/-Humanoid-Robotics-Textbook-Hackathon-1',
           label: 'GitHub',
@@ -99,10 +98,10 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Textbook',
           items: [
             {
-              label: 'Module 1',
+              label: 'Modules',
               to: '/docs/intro',
             },
           ],
@@ -128,22 +127,35 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'GitHub',
               href: 'https://github.com/samia/-Humanoid-Robotics-Textbook-Hackathon-1',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} AI/Spec-Driven Book with Embedded RAG Chatbot. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['python', 'bash', 'yaml', 'json', 'cpp'],
+      additionalLanguages: [
+        'python',      // Essential for ROS 2 Python nodes and scripts
+        'bash',        // For ROS 2 command-line tools and shell scripts
+        'yaml',        // For ROS 2 configuration files and launch files
+        'json',        // For configuration and data exchange
+        'cpp',         // For ROS 2 C++ nodes and core development
+        'cmake',       // For CMakeLists.txt build configuration files
+        'docker',      // For Dockerfiles and containerization examples
+        'markdown',    // For documentation and README files
+        'regex',       // For pattern matching and text processing examples
+        'diff',        // For showing code differences and patches
+        'ini',         // For configuration files (like .cfg files)
+        'rust',        // For robotics applications using Rust
+        'java',        // For Android-based robotics interfaces
+        'typescript',  // For web-based robotics tools and interfaces
+        'protobuf',    // For ROS 2 message definitions and interfaces
+        'systemd',     // For systemd service files in robotics systems
+      ],
     },
   } satisfies Preset.ThemeConfig,
 };

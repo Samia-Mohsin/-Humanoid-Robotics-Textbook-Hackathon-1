@@ -4,27 +4,178 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* Cyberpunk color palette */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #ff00ff;
+  --ifm-color-primary-dark: #e600e6;
+  --ifm-color-primary-darker: #cc00cc;
+  --ifm-color-primary-darkest: #b300b3;
+  --ifm-color-primary-light: #ff33ff;
+  --ifm-color-primary-lighter: #ff66ff;
+  --ifm-color-primary-lightest: #ff99ff;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 0, 255, 0.1);
+
+  /* Cyberpunk theme colors */
+  --cyberpunk-dark-bg: #0f0f1f;
+  --cyberpunk-pink: #ff00ff;
+  --cyberpunk-cyan: #00ffff;
+  --cyberpunk-pink-glow: 0 0 8px rgba(255, 0, 255, 0.7);
+  --cyberpunk-cyan-glow: 0 0 8px rgba(0, 255, 255, 0.7);
+  --cyberpunk-pink-glow-strong: 0 0 15px rgba(255, 0, 255, 0.9);
+  --cyberpunk-cyan-glow-strong: 0 0 15px rgba(0, 255, 255, 0.9);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #ff00ff;
+  --ifm-color-primary-dark: #e600e6;
+  --ifm-color-primary-darker: #cc00cc;
+  --ifm-color-primary-darkest: #b300b3;
+  --ifm-color-primary-light: #ff33ff;
+  --ifm-color-primary-lighter: #ff66ff;
+  --ifm-color-primary-lightest: #ff99ff;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 0, 255, 0.3);
+}
+
+/* Cyberpunk neon glow effects */
+.neon-pink {
+  color: var(--cyberpunk-pink);
+  text-shadow: var(--cyberpunk-pink-glow);
+}
+
+.neon-cyan {
+  color: var(--cyberpunk-cyan);
+  text-shadow: var(--cyberpunk-cyan-glow);
+}
+
+.neon-pink-strong {
+  color: var(--cyberpunk-pink);
+  text-shadow: var(--cyberpunk-pink-glow-strong);
+}
+
+.neon-cyan-strong {
+  color: var(--cyberpunk-cyan);
+  text-shadow: var(--cyberpunk-cyan-glow-strong);
+}
+
+/* Cyberpunk background with neon circuit patterns */
+.cyberpunk-bg {
+  background: var(--cyberpunk-dark-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyberpunk-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(rgba(255, 0, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 30px 30px, 30px 30px;
+  background-position: 0 0, 0 0, 25px 25px, 25px 25px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Cyberpunk button styles */
+.btn-cyberpunk {
+  background: transparent;
+  border: 2px solid var(--cyberpunk-cyan);
+  color: var(--cyberpunk-cyan);
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-cyberpunk::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-cyberpunk:hover {
+  box-shadow: 0 0 15px var(--cyberpunk-cyan-glow-strong);
+  transform: translateY(-2px);
+  color: white;
+  text-shadow: var(--cyberpunk-cyan-glow);
+}
+
+.btn-cyberpunk:hover::before {
+  left: 100%;
+}
+
+/* Cyberpunk animations */
+@keyframes cyberpulse {
+  0% { box-shadow: 0 0 5px var(--cyberpunk-cyan); }
+  50% { box-shadow: 0 0 20px var(--cyberpunk-cyan-glow-strong); }
+  100% { box-shadow: 0 0 5px var(--cyberpunk-cyan); }
+}
+
+.cyberpulse {
+  animation: cyberpulse 2s infinite;
+}
+
+/* Cyberpunk logo styling */
+.cyberpunk-logo {
+  filter: drop-shadow(0 0 8px var(--cyberpunk-cyan-glow-strong));
+  transition: all 0.3s ease;
+}
+
+.cyberpunk-logo:hover {
+  filter: drop-shadow(0 0 15px var(--cyberpunk-cyan-glow-strong));
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments for cyberpunk styling */
+@media (max-width: 768px) {
+  .neon-pink, .neon-cyan {
+    text-shadow: 0 0 5px currentColor;
+  }
+
+  .btn-cyberpunk {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Dark theme overrides for HeroSection */
+[data-theme='dark'] {
+  --ifm-hero-background-color: #0f0f1f;
+  --ifm-hero-text-color: #ffffff;
+}
+
+/* Additional styling for the new HeroSection component */
+.hero-section {
+  background: linear-gradient(135deg, #0f0f1f 0%, #1a1a2e 50%, #16213e 100%) !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cyberpunk-bg::before,
+  .cyberpulse,
+  .btn-cyberpunk::before {
+    animation: none;
+    transition: none;
+  }
+
+  .cyberpunk-logo {
+    transition: none;
+  }
 }

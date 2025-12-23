@@ -1,4 +1,4 @@
-# Module 4: Vision-Language-Action (VLA)
+# Vision-Language-Action (VLA)
 
 Welcome to Module 4 of the Humanoid Robotics Textbook! This module covers Vision-Language-Action (VLA) systems for humanoid robotics, focusing on how vision, language, and action components integrate to enable autonomous behavior.
 

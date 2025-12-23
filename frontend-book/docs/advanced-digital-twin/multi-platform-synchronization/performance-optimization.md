@@ -4,7 +4,7 @@ sidebar_position: 15
 
 # Performance Optimization
 
-Achieving real-time synchronization with <50ms latency requires careful performance optimization of both the communication system and the simulation platforms. This chapter covers techniques to optimize synchronization performance while maintaining accuracy.
+Achieving real-time synchronization with &lt;50ms latency requires careful performance optimization of both the communication system and the simulation platforms. This chapter covers techniques to optimize synchronization performance while maintaining accuracy.
 
 ## Performance Metrics and Monitoring
 
@@ -882,4 +882,4 @@ class SyncProfiler:
 3. Monitor memory usage over time
 4. Check for circular references
 
-These performance optimization techniques are essential for achieving the <50ms latency required for real-time synchronization between Gazebo and Unity in digital twin applications.
+These performance optimization techniques are essential for achieving the &lt;50ms latency required for real-time synchronization between Gazebo and Unity in digital twin applications.
