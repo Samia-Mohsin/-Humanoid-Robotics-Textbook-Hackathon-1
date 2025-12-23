@@ -13,17 +13,19 @@ const HeroSection = () => {
             className={`${styles.robotImage} hero-robot-medium`}
           />
         </div>
-        <h1 className={styles.title}>
-          Physical AI & Humanoid Robotics
-        </h1>
-        <p className={styles.subtitle}>
-          The Complete AI-Native Textbook
-        </p>
-        <Link
-          className={styles.ctaButton}
-          to="/docs/intro">
-          Start Reading
-        </Link>
+        <div className={styles.textContainer}>
+          <h1 className={styles.title}>
+            Physical AI & Humanoid Robotics
+          </h1>
+          <p className={styles.subtitle}>
+            The Complete AI-Native Textbook
+          </p>
+          <Link
+            className={styles.ctaButton}
+            to="/docs/intro">
+            Start Reading
+          </Link>
+        </div>
       </div>
     </section>
   );

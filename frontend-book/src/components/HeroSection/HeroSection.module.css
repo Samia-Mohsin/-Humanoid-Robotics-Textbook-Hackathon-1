@@ -36,21 +36,31 @@
   position: relative;
   z-index: 2;
   color: white;
-  max-width: 800px;
+  max-width: 600px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
+}
+
+/* Container for text elements below the image */
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .robotIcon {
   position: relative;
-  width: 450px;
-  height: 450px;
-  max-width: 450px;
-  margin-top: 1.5rem;
+  width: 350px;
+  height: 350px;
+  max-width: 350px;
+  margin-top: 1rem;
   animation: float 4s ease-in-out infinite;
 }
 
@@ -190,69 +200,8 @@
   }
 
   .title {
-    font-size: 4.5rem;
+    font-size: 4rem;
     white-space: nowrap;
-  }
-
-  .subtitle {
-    font-size: 2rem;
-  }
-
-  .contentContainer {
-    gap: 3.5rem;
-  }
-
-  .robotIcon {
-    width: 400px;
-    height: 400px;
-  }
-
-  .hero-robot-medium {
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .heroSection {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 3.5rem;
-    white-space: nowrap;
-  }
-
-  .subtitle {
-    font-size: 1.8rem;
-  }
-
-  .contentContainer {
-    gap: 3rem;
-  }
-
-  .ctaButton {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .robotIcon {
-    width: 350px;
-    height: 350px;
-  }
-
-  .hero-robot-medium {
-    max-width: 350px;
-  }
-}
-
-@media (max-width: 576px) {
-  .heroSection {
-    padding: 0.5rem;
-  }
-
-  .title {
-    font-size: 2.8rem;
-    white-space: normal; /* Allow wrapping on very small screens */
   }
 
   .subtitle {
@@ -261,11 +210,7 @@
 
   .contentContainer {
     gap: 2.5rem;
-  }
-
-  .ctaButton {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    max-width: 500px;
   }
 
   .robotIcon {
@@ -275,5 +220,73 @@
 
   .hero-robot-medium {
     max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    white-space: nowrap;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .contentContainer {
+    gap: 2rem;
+    max-width: 450px;
+  }
+
+  .ctaButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .robotIcon {
+    width: 250px;
+    height: 250px;
+  }
+
+  .hero-robot-medium {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroSection {
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    white-space: normal; /* Allow wrapping on very small screens */
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+  }
+
+  .contentContainer {
+    gap: 1.5rem;
+    max-width: 350px;
+  }
+
+  .ctaButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .robotIcon {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-robot-medium {
+    max-width: 200px;
   }
 }
