@@ -164,7 +164,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Module 5: Capstone Project',
+      label: 'Capstone Project',
       items: [
         'capstone-project/index',
       ],
