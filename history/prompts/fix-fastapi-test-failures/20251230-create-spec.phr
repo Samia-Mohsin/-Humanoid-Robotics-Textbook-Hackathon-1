@@ -1,0 +1,39 @@
+---
+id: "20251230-create-spec-001"
+stage: "spec"
+feature: "fix-fastapi-test-failures"
+title: "Create Specification for FastAPI TestClient and SlowAPI Integration Fixes"
+date: "2025-12-30"
+author: "Claude"
+status: "completed"
+---
+
+# Create Specification for FastAPI TestClient and SlowAPI Integration Fixes
+
+## PROMPT_TEXT
+
+```
+spec3
+Debug and fix FastAPI test failures caused by incorrect request parameter injection and middleware interactions. Ensure SlowAPI decorators receive a proper starlette.requests.Request (not a Pydantic body model), refactor /query endpoint signature to use a single Request plus body schema, and update tests accordingly. Fix 422 errors for large queries by aligning request models, validation, and TestClient payloads. Stabilize logging to avoid WinError 6 during pytest and ensure all tests pass on Python 3.13 with pinned FastAPI/Starlette/httpx versions.
+```
+
+## RESPONSE_TEXT
+
+Created comprehensive specification for fixing FastAPI test failures related to TestClient parameter injection and SlowAPI integration issues. The specification includes:
+
+- Complete feature specification with user stories and acceptance criteria
+- Detailed implementation plan with phased approach
+- 18 specific tasks organized in logical phases
+- Research document analyzing the root causes of the issues
+- Data model defining the updated request/response structures
+- Quickstart guide for implementing the fixes
+- Validation checklist confirming specification quality
+
+Key issues addressed:
+- TestClient initialization error: "TypeError: Client.__init__() got an unexpected keyword argument 'app'"
+- SlowAPI decorator receiving incorrect Request object types
+- 422 validation errors for large queries
+- WinError 6 during pytest execution
+- Rate limiting functionality with proper Request object handling
+
+The specification provides a clear roadmap for fixing the compatibility issues between newer versions of Starlette/httpx and the existing test code, ensuring all tests pass with proper integration patterns.

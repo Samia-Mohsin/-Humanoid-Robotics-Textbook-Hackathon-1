@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  description: API for integrating the RAG chatbot with frontend applications
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+
+paths:
+  /query:
+    post:
+      summary: Process a user query using the RAG agent
+      description: Process a user query by retrieving relevant content and generating a response based on the textbook
+      operationId: query_endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Successful response from the RAG agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '400':
+          description: Validation error in the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - api_key: []
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the status of the API service
+      operationId: health_check
+      responses:
+        '200':
+          description: Health check successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: Authorization
+
+  schemas:
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          minLength: 3
+          maxLength: 5000
+          description: The user's question or query text
+          example: "What is humanoid robotics?"
+        conversation_id:
+          type: string
+          description: Unique identifier for conversation continuity
+          example: "abc123-def456"
+        debug:
+          type: boolean
+          default: false
+          description: Flag to enable debug mode
+          example: false
+
+    QueryResponse:
+      type: object
+      required:
+        - response
+      properties:
+        response:
+          type: string
+          description: The RAG agent's response to the query
+          example: "Humanoid robotics is a field that focuses on creating robots with human-like characteristics..."
+        conversation_id:
+          type: string
+          description: Conversation identifier for continuity
+          example: "abc123-def456"
+        sources:
+          type: array
+          items:
+            type: string
+          description: List of source citations for the response
+          example: ["https://example.com/source1", "https://example.com/source2"]
+        debug_info:
+          type: object
+          description: Debug information when debug mode is enabled
+          nullable: true
+          example: {"processing_info": "Debug mode enabled - additional information available internally"}
+
+    HealthCheckResponse:
+      type: object
+      required:
+        - status
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+          description: Health status of the service
+          example: "healthy"
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the health check
+          example: "2025-12-30T21:05:58.425398"
+        dependencies:
+          type: object
+          description: Status of dependent services
+          nullable: true
+          example: {"environment": "ok", "qdrant": "configured", "cohere": "configured", "openai": "configured"}
+
+    ErrorResponse:
+      type: object
+      required:
+        - detail
+      properties:
+        detail:
+          type: string
+          description: Human-readable error message
+          example: "Validation error: query too short"

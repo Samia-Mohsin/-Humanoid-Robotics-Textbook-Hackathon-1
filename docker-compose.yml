@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  rag-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - QDRANT_URL=${QDRANT_URL}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - QDRANT_COLLECTION_NAME=${QDRANT_COLLECTION_NAME}
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEBUG=${DEBUG:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - qdrant
+    networks:
+      - rag-network
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+    restart: unless-stopped
+    networks:
+      - rag-network
+
+networks:
+  rag-network:
+    driver: bridge
+
+volumes:
+  qdrant_data:
