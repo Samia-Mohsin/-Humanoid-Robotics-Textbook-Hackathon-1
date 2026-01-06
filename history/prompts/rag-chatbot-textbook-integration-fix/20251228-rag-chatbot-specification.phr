@@ -1,0 +1,134 @@
+---
+id: phr-20251228-009
+title: RAG Chatbot Specification
+stage: spec
+date: 2025-12-28
+surface: Created comprehensive specification for RAG Chatbot Textbook Integration Fix
+model: Claude Sonnet 4.5
+feature: rag-chatbot-textbook-integration-fix
+branch: 001-rag-chatbot-textbook-integration-fix
+user: Claude
+command: /sp.specify
+labels: [specification,rag,chatbot,textbook,integration,fix,ai,qdrant,cohere]
+links:
+  spec: ../001-rag-chatbot-textbook-integration-fix/spec.md
+  ticket:
+  adr:
+  pr:
+files:
+  - specs/001-rag-chatbot-textbook-integration-fix/spec.md
+  - specs/001-rag-chatbot-textbook-integration-fix/checklists/requirements.md
+tests:
+  - spec_completeness: PASS
+  - requirement_validation: PASS
+  - user_story_prioritization: PASS
+  - success_criteria_measurability: PASS
+---
+
+## Prompt
+
+/sp.specify rag-chatbot-textbook-integration-fix
+Overview
+Feature: RAG-powered chatbot for the Physical AI & Humanoid Robotics Textbook
+Current Issue: Chatbot fails to retrieve basic textbook content (e.g., "ROS 2" queries return "information not available") despite successful Qdrant and Cohere connections
+Purpose: Ensure the chatbot accurately answers questions using only the textbook content by fixing document ingestion, chunking, embedding, and retrieval pipeline
+Target Success: User asks "What is ROS 2?" → receives detailed, accurate answer directly from Module 1 content
+Root Causes to Address
+Documents not properly loaded into Qdrant collection
+Poor text chunking (too large/small chunks losing context)
+Ineffective embedding of technical terms (e.g., "ROS 2", "rclpy", "URDF")
+Incorrect collection name or namespace mismatch
+Missing metadata filtering
+Retrieval returning empty or low-relevance results
+Document Ingestion Requirements
+Source: All MD/MDX files from /docs folder (especially Module 1–6 content)
+File types: .md and .mdx
+Pre-processing:
+Strip frontmatter (YAML header)
+Remove code fence markers but keep code content
+Clean Docusaurus-specific syntax (Admonitions, tabs → plain text)
+Preserve headings and structure
+Chunking Strategy:
+Size: 500–800 tokens per chunk (optimal for Cohere embed-english-v3.0)
+Overlap: 100–200 tokens
+Split on headings (###) to keep logical sections intact
+Add metadata: { "module": "Module 1", "section": "ROS 2 Fundamentals", "file": "docs/module1/ros2-intro.md" }
+Embedding & Storage
+Model: Cohere embed-english-v3.0 (or latest free-tier compatible)
+Collection name: "humanoid_robotics_docs" (must match exactly)
+Vector size: 1024 (for Cohere v3)
+Payload: Include source file, module, heading hierarchy
+Upsert mode: Replace existing points on re-ingestion
+Retrieval Pipeline
+Query embedding using same Cohere model
+Search top-k: 5–8 relevant chunks
+Similarity threshold: Optional >0.75
+Re-rank: Simple MMR (Maximal Marginal Relevance) if possible
+Context assembly: Concatenate retrieved chunks with metadata (e.g., "From Module 1: ...")
+Response Generation
+Prompt template:
+"You are an expert assistant for the 'Physical AI & Humanoid Robotics' textbook. Answer ONLY using the provided context. If the answer is not in the context, say: 'This specific information is covered in [Module X] – please check that section.'
+
+Context:
+{retrieved_chunks}
+
+Question: {user_question}"
+
+Temperature: 0.3 (factual accuracy)
+
+Max tokens: 500
+
+Testing Requirements
+Test queries must succeed:
+"What is ROS 2?"
+"Explain nodes and topics in ROS 2"
+"What is URDF?"
+"How does Gazebo simulate physics?"
+"What is NVIDIA Isaac Sim used for?"
+All answers must cite correct module/section implicitly or explicitly
+Implementation Constraints
+Free-tier only (Cohere free API key, Qdrant Cloud free tier)
+Python-based ingestion script
+No paid models or services
+Works offline after initial ingestion (optional local Qdrant)
+Deliverables
+Updated ingestion script (ingest.py or agent.py section)
+Verification script to test 10 core queries
+Debug mode showing retrieved chunks before response
+README section: "How to re-ingest textbook content"
+Not Including
+Web UI enhancements (focus on backend accuracy)
+Multi-language support
+Real-time document updates
+Output only the /sp.specify in clean, structured Markdown.
+Ensure the specification guarantees accurate retrieval of core textbook content like ROS 2.
+
+Start now with /sp.specify rag-chatbot-textbook-integration-fix
+
+## Response snapshot
+
+Successfully created comprehensive specification for RAG Chatbot Textbook Integration Fix with:
+
+- 3 prioritized user stories (P1-P3) addressing document ingestion, chunking/embedding, and retrieval/response pipeline
+- 10 functional requirements (FR-001 to FR-0010) covering ingestion, preprocessing, chunking, embedding, metadata, retrieval, and response generation
+- 6 success criteria with measurable outcomes (SC-001 to SC-006)
+- 4 key entities identified (DocumentChunk, IngestionPipeline, RetrievalResult, ResponseContext)
+- 5 edge cases documented for robustness
+- Quality checklist created and validated
+
+The specification addresses the root causes of the current issue where chatbot fails to retrieve basic textbook content like "ROS 2". It ensures proper document ingestion from /docs folder, optimal chunking strategy (500-800 tokens), Cohere embedding with proper metadata, and accurate response generation citing correct modules/sections.
+
+## Outcome
+
+- ✅ Impact: Complete specification for fixing RAG chatbot textbook integration with clear user value
+- 🧪 Tests: All specification quality checks passed
+- 📁 Files: spec.md and requirements checklist created
+- 🔁 Next prompts: Ready for /sp.plan to create implementation plan
+- 🧠 Reflection: Specification balances technical requirements with user needs, prioritizes core functionality
+
+## Evaluation notes (flywheel)
+
+- Failure modes observed: None - all validation checks passed
+- Graders run and results (PASS/FAIL): All quality criteria met
+- Prompt variant (if applicable): Standard specification workflow
+- Next experiment (smallest change to try): Proceed to planning phase with /sp.plan

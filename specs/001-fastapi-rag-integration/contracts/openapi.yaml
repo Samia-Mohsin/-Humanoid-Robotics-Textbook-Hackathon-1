@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: RAG Chatbot API
+  description: API for integrating the RAG chatbot with frontend applications
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+paths:
+  /query:
+    post:
+      summary: Process a user query using the RAG agent
+      description: Sends a user query to the RAG agent and returns a textbook-based response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Successful response from the RAG agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '400':
+          description: Bad request - invalid query format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the API service
+      responses:
+        '200':
+          description: Health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+components:
+  schemas:
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The user's question or query text
+          minLength: 3
+          maxLength: 1000
+          example: "What is ROS 2?"
+        conversation_id:
+          type: string
+          description: Unique identifier for conversation continuity (UUID format)
+          pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        debug:
+          type: boolean
+          description: Flag to enable debug mode
+          default: false
+          example: false
+    QueryResponse:
+      type: object
+      required:
+        - response
+      properties:
+        response:
+          type: string
+          description: The RAG agent's response to the query
+          example: "ROS 2 (Robot Operating System 2) is a flexible framework for writing robot software..."
+        conversation_id:
+          type: string
+          description: The conversation identifier (newly created or existing)
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        sources:
+          type: array
+          items:
+            type: string
+          description: List of source citations used in the response
+          example: ["file://docs/intro.md", "file://docs/ros2-basics/index.md"]
+        debug_info:
+          $ref: '#/components/schemas/DebugInfo'
+    DebugInfo:
+      type: object
+      properties:
+        retrieved_chunks:
+          type: array
+          items:
+            type: object
+            properties:
+              chunk_id:
+                type: string
+              text_preview:
+                type: string
+              similarity_score:
+                type: number
+                format: float
+              source:
+                type: string
+        processing_time:
+          type: number
+          format: float
+          description: Time taken to process the query in seconds
+    HealthCheckResponse:
+      type: object
+      required:
+        - status
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+          description: Overall health status of the service
+          example: healthy
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of the health check
+          example: "2025-12-29T10:00:00Z"
+        dependencies:
+          type: object
+          properties:
+            agent:
+              type: string
+              enum: [healthy, degraded, unhealthy]
+              description: Health status of the RAG agent
+            qdrant:
+              type: string
+              enum: [healthy, degraded, unhealthy]
+              description: Health status of the Qdrant connection
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+          example: "Query must be at least 3 characters long"
+        error_code:
+          type: string
+          description: Machine-readable error code
+          example: "INVALID_QUERY"
+        details:
+          type: object
+          description: Additional error details
+          example: {"field": "query", "reason": "too short"}

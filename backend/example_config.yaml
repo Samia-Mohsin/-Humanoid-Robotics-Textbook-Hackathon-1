@@ -1,0 +1,49 @@
+# Example Configuration File for URL Ingestion & Embedding Pipeline
+
+# API Configuration
+api_keys:
+  cohere: "your_cohere_api_key_here"
+  qdrant:
+    url: "your_qdrant_cloud_url_here"
+    api_key: "your_qdrant_api_key_here"
+
+# Processing Configuration
+processing:
+  chunk_size: 512
+  chunk_overlap: 50
+  cohere_model: "embed-english-v3.0"
+  max_concurrent_requests: 5
+  request_delay: 1.0  # seconds between requests
+
+# Crawler Configuration
+crawler:
+  user_agent: "Mozilla/5.0 (compatible; DocumentEmbedder/1.0)"
+  timeout: 30  # seconds
+  max_retries: 3
+  retry_delay: 2.0  # seconds between retries
+  respect_robots_txt: true
+
+# Storage Configuration
+storage:
+  collection_name: "document_embeddings"
+  vector_size: 1024  # For Cohere embeddings
+  distance_metric: "Cosine"
+
+# Validation Configuration
+validation:
+  min_chunk_length: 50  # minimum number of characters in a chunk
+  max_chunk_length: 2000  # maximum number of characters in a chunk
+  similarity_threshold: 0.7  # minimum similarity score for relevance
+
+# Sitemap Processing Configuration
+sitemap:
+  rate_limit_delay: 1.0  # seconds between requests when processing sitemap URLs
+  max_urls_per_sitemap: 1000  # maximum number of URLs to process from a single sitemap
+  enable_progress_tracking: true  # whether to show progress updates during sitemap processing
+  max_memory_usage_mb: 1024  # maximum memory usage allowed during processing (0 for no limit)
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_path: "logs/embedding_pipeline.log"
